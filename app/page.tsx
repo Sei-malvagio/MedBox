@@ -1,7 +1,7 @@
 function Home() 
 {
   return (
-    <div>
+    <div className="items-center">
       <h1 className="text-center">
     MedBox Company inc.
     </h1>
