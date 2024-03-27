@@ -2,7 +2,7 @@ function Home()
 {
   return (
     <div>
-      <h1 class="text-center">
+      <h1 className="text-center">
     MedBox Company inc.
     </h1>
     </div>
