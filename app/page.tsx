@@ -1,7 +1,7 @@
 function Home() 
 {
   return (
-    <div className="h-dvh">
+    <div className="h-96 border border-green">
       <div className="flex flex-col justify-center items-center space-y-3">
       <h1 className="text-center text-2xl font-medium">
     MedBox Company inc.
