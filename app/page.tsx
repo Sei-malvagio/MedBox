@@ -1,4 +1,4 @@
-function Home() 
+export default function Home() 
 {
   return {
     <div>
@@ -6,5 +6,5 @@ function Home()
     MedBox Company inc.
     </h1>
     </div>
-  }
-}
+      }
+      }
