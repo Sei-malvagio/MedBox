@@ -1,8 +1,8 @@
 function Home() 
 {
   return (
-    <div className="flex flex-col h-screen justify-center items-center">
-      <div className="text-center space-y-3">
+    <div className="flex flex-col h-screen justify-center items-center space-y-3">
+      <div className="text-center">
       <h1 className="text-2xl font-medium">
     MedBox Company inc.
     </h1>
