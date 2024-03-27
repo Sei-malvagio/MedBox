@@ -1,7 +1,7 @@
 function Home() 
 {
   return {
-    <div className="flex flex-col justify-center items-center pace-y-4">
+    <div className="flex flex-col justify-center items-center space-y-4">
       <div>
       <h1 className="text-center text-2xl font-medium">
     MedBox Company inc.
