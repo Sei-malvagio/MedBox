@@ -1,22 +1,60 @@
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 function Home() 
 {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const animatedElement = document.getElementById("animated");
+    const anima = document.getElementById("anime");
+
+    const handleAnimationEnd = () => {
+      animatedElement.removeAttribute("id");
+      anima.removeAttribute("id");
+    };
+
+    animatedElement.addEventListener("animationend", handleAnimationEnd);
+
+    const setScrollVar = () => {
+      const htmlElement = document.body;
+      const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
+      const au = percentOfScreenHeightScrolled * 100;
+      console.log("hasil: " + au);
+      htmlElement.style.setProperty(
+        "--scroll",
+        au
+      );
+    };
+
+    window.addEventListener("scroll", setScrollVar);
+    window.addEventListener("resize", setScrollVar);
+
+    setScrollVar();
+
+    return () => {
+      animatedElement.removeEventListener("animationend", handleAnimationEnd);
+      window.removeEventListener("scroll", setScrollVar);
+      window.removeEventListener("resize", setScrollVar);
+    };
+  }, []);
+  
   return (
     <div className="block">      
       <div className="min-h-screen flex flex-col justify-center brah">
-    <nav className="fixed top-0 z-10 sm:z-[1] h-14 w-full flex justify-between transition duration-500 ease-in-out" :className="{'max-[640px]:h-full': open, 'bg-nav': open }" x-data="{ open: false }">
+    <nav className="fixed top-0 z-10 sm:z-1 h-14 w-full flex justify-between transition duration-500 ease-in-out">
       <div className="w-12 h-12 bg-[url('./logo2.png')] bg-no-repeat bg-contain ml-4 mt-1"></div>
-      <ul className="flex sm:flex-row-reverse max-[640px]:flex-col justify-center items-center transition duration-500 ease-in-out" :className="{'max-[640px]:hidden': !open }">
+      <ul className={`flex sm:flex-row-reverse max-[640px]:flex-col justify-center items-center transition duration-500 ease-in-out ${open ? 'max-[640px]:hidden' : ''}`}>
         <li>
-          <h1 className="text-color-two max-[640px]:mx-auto sm:mr-8 text-center max-[330px]:text-4xl max-[640px]:text-6xl font-bold max-[640px]:mb-20 transition duration-500" :className="{'nav-ani': open }">>About</h1>
+          <h1 className={`text-color-two max-[640px]:mx-auto sm:mr-8 text-center max-[330px]:text-4xl max-[640px]:text-6xl font-bold max-[640px]:mb-20 transition duration-500 ${open ? 'nav-ani' : ''}`}>About</h1>
         </li>
-        <li className="text-color-two sm:mr-8 transition duration-500" :className="{'nav-ani': open }">Social: TW GH LI</li>
-        <li className="text-color-two sm:mr-8 transition duration-500" :className="{'nav-ani': open }">Available For Exigent +62 85156207150</li>
+        <li className={`text-color-two sm:mr-8 transition duration-500 ${open ? 'nav-ani' : ''}`}>Social: TW GH LI</li>
+        <li className={`text-color-two sm:mr-8 transition duration-500 ${open ? 'nav-ani' : ''}`}>Available For Exigent +62 85156207150</li>
       </ul>
-      <button className="w-14 h-14 focus:outline-none rounded sm:hidden" @click="open = !open">
+      <button className="w-14 h-14 focus:outline-none rounded sm:hidden" onClick={() => setOpen(!open)}>
         <div className="block w-5">
-          <span className="block absolute h-0.5 w-7 bg-color-one transform transition duration-500 ease-in-out" :className="{'rotate-45': open, '-translate-y-1.5': !open }"></span>
-          <span className="block absolute  h-0.5 w-5 bg-color-one transform transition duration-500 ease-in-out" :className="{'opacity-0': open } "></span>
-          <span className="block absolute  h-0.5 w-7 bg-color-one transform transition duration-500 ease-in-out" :className="{'-rotate-45': open, 'translate-y-1.5': !open}"></span>
+          <span className={`block absolute h-0.5 w-7 bg-color-one transform transition duration-500 ease-in-out ${open ? 'rotate-45 -translate-y-1.5' : ''}`}></span>
+          <span className={`block absolute h-0.5 w-5 bg-color-one transform transition duration-500 ease-in-out ${open ? 'opacity-0' : ''}`}></span>
+          <span className={`block absolute h-0.5 w-7 bg-color-one transform transition duration-500 ease-in-out ${open ? '-rotate-45 translate-y-1.5' : ''}`}></span>
         </div>
       </button>
     </nav>
@@ -85,35 +123,6 @@ function Home()
       </section>
     </main>
   </div>
-  <script>
-    window.onload = () => {
-      const animatedElement = document.getElementById("animated");
-      const anima = document.getElementById("anime");
-
-      animatedElement.addEventListener("animationend", () => {
-        animatedElement.removeAttribute("id");
-        anima.removeAttribute("id");
-      });
-
-      window.addEventListener("scroll", setScrollVar);
-      window.addEventListener("resize", setScrollVar);
-
-      function setScrollVar() {
-        const htmlElement = document.body;
-        const percentOfScreenHeightScrolled = htmlElement.scrollTop / htmlElement.clientHeight;
-        const au = percentOfScreenHeightScrolled * 100;
-        console.log("hasil: " + au);
-        // console.log(1 - (1 / 100) * Number(Math.min(au, 30)) * 100 / 30);
-        // console.log("jika berada di bawah: " + (1 / 100) * (Math.max(au, 25) - 25) * 100 / 75);
-        htmlElement.style.setProperty(
-          "--scroll",
-          au
-        );
-      }
-
-      setScrollVar()
-    }
-  </script>
       </div>
     )
 }
