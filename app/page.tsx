@@ -1,6 +1,7 @@
 function Home() 
 {
   return (
+    <>
     <div className="block">      
       <div className="min-h-screen flex flex-col justify-center brah">
     <nav className="fixed top-0 z-10 sm:z-[1] h-14 w-full flex justify-between transition duration-500 ease-in-out" :className="{'max-[640px]:h-full': open, 'bg-nav': open }" x-data="{ open: false }">
@@ -115,6 +116,7 @@ function Home()
     }
   </script>
       </div>
+      </>
     )
 }
 
